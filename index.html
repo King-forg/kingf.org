@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kingf.org</title>
+<meta name="description" content="Find me online.">
+<link rel="icon" href="turtle.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef3dc;
+    --ink: #17261a;
+    --muted: #4d5f45;
+    --line: #bccaa0;
+    --green: #2f5d2a;
+    --orange: #e8702a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+
+  /* Top ribbon: add more subdomains by copying an <a> line */
+  .ribbon {
+    background: var(--green);
+    border-bottom: 4px solid var(--orange);
+  }
+  .ribbon nav {
+    max-width: 38rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .ribbon a {
+    color: #f4f8e4;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.8rem 1rem;
+  }
+  .ribbon a:first-child { padding-left: 0; margin-right: 0.5rem; }
+  .ribbon a:hover { background: var(--orange); color: var(--ink); }
+  .ribbon a:first-child:hover { padding-left: 0.5rem; }
+
+  main { max-width: 38rem; margin: 0 auto; padding: 3.5rem 1.25rem 4rem; }
+  .hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  h1 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.75rem, 12vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 0 0 0.75rem;
+    color: var(--green);
+  }
+  .sub { color: var(--muted); margin: 0; }
+  .turtle { width: clamp(8rem, 32vw, 12rem); height: auto; margin-left: auto; }
+
+  ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  li { border-bottom: 1px solid var(--line); }
+  main a, main button {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding: 0.95rem 0;
+    margin: 0;
+    background: none;
+    border: 0;
+    color: var(--ink);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    transition: padding-left 0.15s;
+  }
+  main a:hover, main button:hover { padding-left: 1.1rem; box-shadow: inset 6px 0 0 var(--orange); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .hint { font-family: "Inter", system-ui, sans-serif; font-weight: 400; font-size: 0.95rem; color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { main a, main button { transition: none; } }
+</style>
+</head>
+<body>
+<header class="ribbon">
+  <nav aria-label="Subdomains">
+    <a href="https://kingf.org">kingf.org</a>
+    <a href="https://mc.web.kingf.org">Minecraft</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div>
+      <h1>kingf.org</h1>
+      <p class="sub">Find me online.</p>
+    </div>
+    <img class="turtle" src="turtle.png" width="534" height="534" alt="A cartoon turtle carrying a smaller turtle on its shell">
+  </div>
+
+  <ul>
+    <li><a href="https://github.com/King-forg">GitHub</a></li>
+    <li><a href="https://www.instagram.com/king__forg/">Instagram</a></li>
+    <li><a href="https://www.tiktok.com/@king__forg">TikTok</a></li>
+    <li><a href="https://www.youtube.com/@MrNyanCatWasTaken">YouTube</a></li>
+    <li>
+      <button type="button" id="discord" data-name="kingforg">
+        <span>Discord</span>
+        <span class="hint" id="discord-hint">kingforg, tap to copy</span>
+      </button>
+    </li>
+  </ul>
+</main>
+<script>
+  var btn = document.getElementById("discord");
+  var hint = document.getElementById("discord-hint");
+  btn.addEventListener("click", function () {
+    navigator.clipboard.writeText(btn.getAttribute("data-name")).then(function () {
+      hint.textContent = "Copied";
+      setTimeout(function () { hint.textContent = "kingforg, tap to copy"; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
