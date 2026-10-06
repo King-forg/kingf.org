@@ -132,7 +132,9 @@
     font: 600 0.95rem "Inter", sans-serif;
     writing-mode: vertical-rl;
     cursor: pointer;
+    transition: left 220ms ease;
   }
+  .drawer-toggle[data-open="true"] { left: min(21rem, calc(100vw - 3rem)); }
   .social-drawer {
     position: fixed;
     z-index: 11;
@@ -262,6 +264,7 @@
     drawer.setAttribute("aria-hidden", String(!isOpen));
     drawer.inert = !isOpen;
     drawerToggle.setAttribute("aria-expanded", String(isOpen));
+    drawerToggle.dataset.open = String(isOpen);
     backdrop.hidden = !isOpen;
     if (isOpen) drawer.querySelector("a").focus();
     else drawerToggle.focus();
