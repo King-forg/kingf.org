@@ -4,20 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>kingf.org</title>
-<meta name="description" content="Find me online.">
+<meta name="description"  content="Find me online.">
 <link rel="icon" href="images/turtle.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f2f1e8;
-    --ink: #20251f;
-    --muted: #60685f;
-    --line: #d0d3c9;
-    --green: #31594a;
-    --orange: #ba552d;
-    --panel: #fbfbf6;
+    --bg: #e9e1d5;
+    --ink: #391b0d;
+    --muted: #515f4f;
+    --line: #b2b99f;
+    --green: #55700a;
+    --orange: #d77a22;
+    --panel: #f0d8b4;
+  }
+  :root[data-season="spring"] {
+    --bg: #e5eddc;
+    --ink: #12421d;
+    --muted: #526b57;
+    --line: #147054;
+    --green: #3f7654;
+    --orange: #1d5e58;
+    --panel: #f5f8ed;
+  }
+  :root[data-season="summer"] {
+    --bg: #e8f1ec;
+    --ink: #5e350f;
+    --muted: #757a5d;
+    --line: #c8baa8;
+    --green: #797b19;
+    --orange: #667c2a;
+    --panel: #f6faf6;
+  }
+  :root[data-season="winter"] {
+    --bg: #97a7b4;
+    --ink: #1f303d;
+    --muted: #526777;
+    --line: #b4c4ce;
+    --green: #356b78;
+    --orange: #4b93bd;
+    --panel: #f4f7f8;
   }
   * { box-sizing: border-box; }
   body {
@@ -33,6 +60,8 @@
 
   /* Top ribbon: add more subdomains by copying an <a> line */
   .ribbon {
+    position: relative;
+    z-index: 1;
     background: var(--green);
     border-bottom: 4px solid var(--orange);
   }
@@ -53,7 +82,41 @@
   .ribbon a:hover { background: var(--orange); color: var(--ink); }
   .ribbon a:first-child:hover { padding-left: 0.5rem; }
 
-  main { max-width: 76rem; margin: 0 auto; padding: 3rem 2rem 4rem; }
+  .leaf-strip {
+    display: none;
+    position: relative;
+    overflow: hidden;
+    height: 5rem;
+    border-bottom: 1px solid var(--line);
+    background-color: var(--bg);
+    background-image: url("images/leaves.png");
+    background-repeat: repeat-x;
+    background-size: 320px auto;
+    background-position: 0 0;
+  }
+  .leaf-strip::before,
+  .leaf-strip::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("images/leaves.png");
+    background-repeat: repeat-x;
+  }
+  .leaf-strip::before {
+    background-size: 367px auto;
+    background-position: 73px 0;
+    opacity: 0.72;
+    transform: scaleX(-1);
+  }
+  .leaf-strip::after {
+    background-size: 421px auto;
+    background-position: 151px 75%;
+    opacity: 0.48;
+    transform: rotate(180deg);
+  }
+  :root[data-season="autumn"] .leaf-strip { display: block; }
+  main { position: relative; z-index: 1; max-width: 76rem; margin: 0 auto; padding: 3rem 2rem 4rem; }
   .hero {
     display: flex;
     align-items: center;
@@ -118,6 +181,60 @@
   .service[data-state="reachable"] .service-state::before { background: #2d8658; }
   .service[data-state="unreachable"] .service-state::before { background: var(--orange); }
   .check-all { margin-top: 1rem; }
+    .season-control {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .season-control button {
+      min-height: 2.75rem;
+      padding: 0.55rem 0.85rem;
+      border: 1px solid var(--green);
+      border-radius: 4px;
+      background: var(--green);
+      color: #fff;
+      font: 500 0.95rem "Inter", sans-serif;
+      cursor: pointer;
+    }
+    .season-control button:hover { background: var(--orange); border-color: var(--orange); }
+    .season-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.85rem; }
+    .effects-toggle { display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer; }
+    .effects-toggle input {
+      appearance: none;
+      width: 2.5rem;
+      height: 1.4rem;
+      margin: 0;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      background: var(--line);
+      cursor: pointer;
+      transition: background 180ms ease;
+    }
+    .effects-toggle input::before {
+      content: "";
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      margin: 0.14rem;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 180ms ease;
+    }
+    .effects-toggle input:checked { background: var(--green); }
+    .effects-toggle input:checked::before { transform: translateX(1.1rem); }
+    .season-effects { display: none; position: fixed; z-index: 0; inset: 0; opacity: 0.8; pointer-events: none; background-repeat: repeat; }
+    :root[data-effects="on"][data-season="winter"] .season-effects {
+      display: block;
+      background-image: url("images/snowflake.svg");
+      background-size: 440px 370px;
+    }
   .drawer-toggle {
     position: fixed;
     z-index: 12;
@@ -179,6 +296,7 @@
     .layout { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero { gap: 1rem; }
     .turtle { width: clamp(6rem, 25vw, 9rem); }
+    .season-control { justify-content: space-between; }
   }
   @media (max-width: 420px) {
     .gallery { grid-template-columns: 1fr; }
@@ -186,6 +304,7 @@
     .ribbon nav { padding-left: 2.5rem; }
   }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }
+  @media (prefers-reduced-motion: reduce) { .season-effects { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -194,10 +313,13 @@
     <a href="https://kingf.org">kingf.org</a>
     <a href="https://mcweb.kingf.org">Minecraft</a>
     <a href="https://mc.kingf.org">MC</a>
-    <a href="https://ha.kingf.org">Home Assistant</a>
+    <a href="https://ha.kingf.org">Home Assistant</a> 
     <a href="https://navi.kingf.org">Navidrome (Private)</a>
   </nav>
 </header>
+<div class="leaf-strip" aria-hidden="true"></div>
+<div class="season-effects" aria-hidden="true">
+</div>
 
 <button class="drawer-toggle" id="drawer-toggle" type="button" aria-expanded="false" aria-controls="social-drawer">Socials</button>
 <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
@@ -211,7 +333,7 @@
     <li>
       <button type="button" id="discord" data-name="kingforg">
         <span>Discord</span>
-        <span class="hint" id="discord-hint">kingforg, tap to copy</span>
+        <span class="hint" id="discord-hint">kingforg (Copy)</span>
       </button>
     </li>
     <li><a href="mailto:mackenziewilcox17@gmail.com">Email Me!</a></li>
@@ -254,8 +376,41 @@
       <button class="check-all" id="check-all" type="button">Check all services</button>
     </section>
   </div>
+  <div class="season-control">
+    <span>Season: <strong id="season-name" aria-live="polite"></strong></span>
+    <div class="season-actions">
+      <label class="effects-toggle"><input id="effects-toggle" type="checkbox" checked><span>Seasonal effects</span></label>
+      <button id="season-next" type="button">Next season</button>
+    </div>
+  </div>
 </main>
 <script>
+  var seasons = ["spring", "summer", "autumn", "winter"];
+  var month = new Date().getMonth();
+  var currentSeason = month >= 2 && month <= 4 ? "spring"
+    : month >= 5 && month <= 7 ? "summer"
+    : month >= 8 && month <= 10 ? "autumn"
+    : "winter";
+  var seasonName = document.getElementById("season-name");
+  var seasonButton = document.getElementById("season-next");
+  var effectsToggle = document.getElementById("effects-toggle");
+
+  function setSeason(season) {
+    document.documentElement.dataset.season = season;
+    seasonName.textContent = season.charAt(0).toUpperCase() + season.slice(1);
+  }
+
+  effectsToggle.addEventListener("change", function () {
+    document.documentElement.dataset.effects = effectsToggle.checked ? "on" : "off";
+  });
+
+  document.documentElement.dataset.effects = effectsToggle.checked ? "on" : "off";
+  setSeason(currentSeason);
+  seasonButton.addEventListener("click", function () {
+    currentSeason = seasons[(seasons.indexOf(currentSeason) + 1) % seasons.length];
+    setSeason(currentSeason);
+  });
+
   var subtitleOptions = ["Turtle approved!", "what am i doing here", "fun fact: this is random", "Why are you here", "Hello world!", "Find me online.", "I like turtles", "I like turtles", "I like turtles", "Forg or turtle??", "only on kingf.org", "i cant think of a reason why you would want to be here", "check out my lack of projects!!", "this wasnt fun to make lol", "50.7995197, 6.8827133", "you reached this message by accident, right?"];
   document.getElementById("random-sub").textContent = subtitleOptions[Math.floor(Math.random() * subtitleOptions.length)];
 
@@ -286,9 +441,9 @@
   var hint = document.getElementById("discord-hint");
   btn.addEventListener("click", function () {
     navigator.clipboard.writeText(btn.getAttribute("data-name")).then(function () {
-      hint.textContent = "Copied";
-      setTimeout(function () { hint.textContent = "kingforg, tap to copy"; }, 1500);
-    }).catch(function () { hint.textContent = "Copy unavailable"; });
+      hint.textContent = "Copied!";
+      setTimeout(function () { hint.textContent = "kingforg (Copy)"; }, 1500);
+    }).catch(function () { hint.textContent = "Copy unavailable :("; });
   });
 
   var checkAllButton = document.getElementById("check-all");
@@ -296,7 +451,7 @@
   async function checkService(service) {
     var state = service.querySelector(".service-state");
     service.dataset.state = "checking";
-    state.textContent = "Checking...";
+    state.textContent = "Checking........";
     var controller = new AbortController();
     var timeout = setTimeout(function () { controller.abort(); }, 7000);
     try {
