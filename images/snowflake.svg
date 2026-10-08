@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 370" width="440" height="370" fill="none">
+  <defs>
+    <g id="flake" stroke="#a9b5bf" stroke-width="2" stroke-linecap="round">
+      <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/>
+    </g>
+  </defs>
+  <use href="#flake" transform="translate(15 13) scale(0.45)"/>
+  <use href="#flake" transform="translate(122 35) rotate(25 12 12) scale(0.62)"/>
+  <use href="#flake" transform="translate(333 18) rotate(52 12 12) scale(0.4)"/>
+  <use href="#flake" transform="translate(65 195) rotate(-18 12 12) scale(0.7)"/>
+  <use href="#flake" transform="translate(218 153) rotate(12 12 12) scale(0.48)"/>
+  <use href="#flake" transform="translate(376 228) rotate(38 12 12) scale(0.42)"/>
+  <use href="#flake" transform="translate(145 302) rotate(-30 12 12) scale(0.55)"/>
+  <use href="#flake" transform="translate(309 318) scale(0.35)"/>
+</svg>
