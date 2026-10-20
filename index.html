@@ -163,9 +163,12 @@
     background: var(--panel);
   }
   .gallery-empty { display: grid; place-items: center; padding: 1.25rem; color: var(--muted); text-align: center; }
-  .photo-card { min-width: 0; }
-  .photo-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #e4e7df; }
-  .photo-card input { width: 100%; border: 0; border-top: 1px solid var(--line); padding: 0.75rem; background: var(--panel); color: var(--ink); font: 0.95rem "Inter", sans-serif; }
+  .photo-card { min-width: 0; display: flex; flex-direction: column; }
+  .photo-card img { display: block; width: 100%; aspect-ratio: 1.91 / 1; object-fit: cover; background: #e4e7df; }
+  .project-content { display: flex; flex: 1; flex-direction: column; padding: 1rem; }
+  .project-content h3 { margin: 0 0 0.35rem; font: 600 1.15rem/1.2 "Bricolage Grotesque", sans-serif; }
+  .project-content p { margin: 0 0 1rem; color: var(--muted); font-size: 0.93rem; }
+  .project-link { margin-top: auto; color: var(--green); font-weight: 600; text-underline-offset: 3px; }
   .status-list { border-top: 1px solid var(--line); }
   .service {
     display: grid;
@@ -352,13 +355,27 @@
   <div class="layout">
     <section aria-labelledby="gallery-heading">
       <div class="section-heading">
-        <h2 id="gallery-heading">Newest projects</h2>
+        <h2 id="gallery-heading">Projects showcase</h2>
       </div>
-      <p class="section-note">Coming soon!</p>
-      <article class="photo-card">
-        <img src="images/" alt="Screenshot of my project">
-        <p>My project description</p>
-      </article>
+      <p class="section-note">A couple of things I've built and worked on.</p>
+      <div class="gallery">
+        <article class="photo-card">
+          <img src="https://opengraph.githubassets.com/1/King-forg/mcdiscordlinkbutbetter" alt="GitHub preview for mcdiscordlinkbutbetter" loading="lazy">
+          <div class="project-content">
+            <h3>mcdiscordlinkbutbetter</h3>
+            <p>A Python bridge that relays chat between a Minecraft server and Discord, with RCON server-management commands.</p>
+            <a class="project-link" href="https://github.com/King-forg/mcdiscordlinkbutbetter" target="_blank" rel="noreferrer">View on GitHub<span aria-hidden="true"> &rarr;</span></a>
+          </div>
+        </article>
+        <article class="photo-card">
+          <img src="https://opengraph.githubassets.com/1/King-forg/game-box" alt="GitHub preview for game-box" loading="lazy">
+          <div class="project-content">
+            <h3>game-box</h3>
+            <p>A collection of lightweight Python games built with the standard library, including Higher or Lower and Naughts and Crosses.</p>
+            <a class="project-link" href="https://github.com/King-forg/game-box" target="_blank" rel="noreferrer">View on GitHub<span aria-hidden="true"> &rarr;</span></a>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section aria-labelledby="status-heading">
